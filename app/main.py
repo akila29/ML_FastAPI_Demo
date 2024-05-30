@@ -48,3 +48,4 @@ def predict(iris: Iris):
     pred = clf.predict(data)
     pred = labels[pred[0]]
     return {"Prediction": pred}
+
