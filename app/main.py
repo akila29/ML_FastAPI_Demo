@@ -2,7 +2,6 @@ import pickle
 import numpy as np
 from fastapi import FastAPI
 from pydantic import BaseModel
-from contextlib import asynccontextmanager
 
 
 app = FastAPI(title="Iris Prediction")
@@ -15,15 +14,13 @@ class Iris(BaseModel):
     petal_length: float
     petal_width: float
 
-@asynccontextmanager
-async def lifespan():
-    print("Ran on startup")
+@app.on_event("startup")
+def load_clf():
     # Load model from pickle file
     with open("/app/model.pkl", "rb") as file:
         global clf
         clf = pickle.load(file)
-    yield
-    
+
 
 @app.get("/")
 def home():
