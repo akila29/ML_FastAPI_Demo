@@ -24,7 +24,7 @@ def load_clf():
 
 @app.get("/")
 def home():
-    return "Hi! We are up and running. Go to http://localhost:80/docs"
+    return "Hi! We are up and running. Go to http://localhost:8000/docs"
 
 
 @app.post("/predict")
